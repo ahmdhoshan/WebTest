@@ -1,0 +1,116 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>HOME PAGE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <header class="header clearfix">
+        <center>
+            <a href="" class="header__logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" height="80"
+                    width="80">
+            </a>
+        </center>
+    </header>
+
+    <div id="RightFloatAds">
+        <img src="https://www.techumbrella.com/images/160X600.jpg">
+    </div>
+
+    <div id="adBottom">
+        <img src="http://www.matrudev.com/files/SubscribeMatruDEVNewsletter.jpg">
+    </div>
+
+    <div id="map"></div>
+            
+    <section class="cards clearfix">
+        <div id="wrap"></div>
+    </section>
+
+    <img class="card__image" src="https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png" alt="Random">
+
+
+    <script>
+    //Google Map Js:
+
+        // Initialize and add the map
+        function initMap() {
+            // The location of Uluru
+            var uluru = { lat: 48.858093, lng: 2.294694 };
+            // The map, centered at Uluru
+            var map = new google.maps.Map(
+                document.getElementById('map'), { zoom: 4, center: uluru });
+            // The marker, positioned at Uluru
+            var marker = new google.maps.Marker({ position: uluru, map: map });
+        }
+    </script>
+    <!--Load the API from the specified URL
+        * The async attribute allows the browser to render the page while the API loads
+        * The key parameter will contain your own API key (which is not needed for this tutorial)
+        * The callback parameter executes the initMap() function
+        -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap">
+    </script>
+
+
+    <script>
+     $(document).ready(function() {
+         var postID = 0;
+         function yHandler() {
+             var wrap = document.getElementById('wrap');
+             var contentHeight = wrap.offsetHeight;
+             var yOffset = window.pageYOffset;
+             var y = yOffset + window.innerHeight;
+             if (y >= contentHeight) {
+
+                 if(postID%2==0)
+                 {
+                      // Ajax call to get more dynamic data goes here
+                      wrap.innerHTML += '<div id=' + postID + ' class="card">'
+                     + '<div class="card__copy">'
+                     + '<p>Appellat nulla quis quo multos. Ne dolor est lorem, do incididunt philosophari,'
+                     + 'eram et possumus, appellat eu enim arbitror. Ab aliquip an nostrud.'
+                     + 'eram et possumus, appellat eu enim arbitror. Ab aliquip an nostrud.'
+                     + 'eram et possumus, appellat eu enim arbitror. Ab aliquip an nostrud.'
+                     + 'eram et possumus, appellat eu enim arbitror. Ab aliquip an nostrud.</p>'
+                     + '</div>'
+                     + '</div>'
+                     + '<br>';
+                 }
+                 else
+                 {
+                      // Ajax call to get more dynamic data goes here
+                      wrap.innerHTML += '<div id=' + postID + ' class="card">    <img class="card__image" src="http://bldna.com/cro.php?width=281&height=169&cropratio=281:169&image=/Files/2020-03/20200307-1113331927075181.JPG">'
+                     + '<div class="card__copy">'
+                     + '<p>Appellat nulla quis quo multos. Ne dolor est lorem, do incididunt philosophari,'
+                     + 'eram et possumus, appellat eu enim arbitror. Ab aliquip an nostrud.'
+                     + 'eram et possumus, appellat eu enim arbitror. Ab aliquip an nostrud.'
+                     + 'eram et possumus, appellat eu enim arbitror. Ab aliquip an nostrud.'
+                     + 'eram et possumus, appellat eu enim arbitror. Ab aliquip an nostrud.</p>'
+                     + '</div>'
+                     + '</div>'
+                     + '<br>';
+                 }
+                
+                 postID++;
+             }
+             var status = document.getElementById('status');
+         }
+
+         $(window).on('load', function() {
+          for(var i=0;i<10;i++) yHandler();
+         })
+
+         window.onscroll = yHandler;
+     });
+    </script>
+
+
+</body>
+</html>
